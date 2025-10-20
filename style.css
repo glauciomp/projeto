@@ -135,10 +135,6 @@ main a:hover {
     text-align: center;
 }
 
-
-
-
-
 /* Destaque para Alocação (R$) */
 .col-2 .card-item:first-child .card-valor {
     font-size: 1.05em;
