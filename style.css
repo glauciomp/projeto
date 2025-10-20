@@ -1,27 +1,241 @@
-/* Estilo para a tabela de investimentos */
-#tabela-container table {
-    width: 100%;
-    border-collapse: collapse; /* Para unir as bordas das células */
-    margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    padding-top: 50px;
 }
 
-#tabela-container th, #tabela-container td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+header, main {
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
 }
 
-#tabela-container th {
+header, main, footer {
+    text-align: center; 
+}
+
+button {
     background-color: #007bff;
     color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+main a {
+    color: #007bff;
+    text-decoration: none;
     font-weight: bold;
 }
 
-#tabela-container tr:nth-child(even) {
-    background-color: #f9f9f9;
+main a:hover {
+    text-decoration: underline;
 }
 
-#tabela-container tr:hover {
-    background-color: #f1f1f1;
+/* --- ESTILOS PARA OS CARDS (Layout 5 Colunas) --- */
+
+#cards-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+.ativo-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 10% 25% 25% 10% 30%; 
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left; 
+    align-items: start;
+}
+
+.card-coluna {
+    padding: 0 5px;
+    border-right: 1px solid #eee;
+    height: 100%;
+}
+
+.card-coluna.col-4 {
+    border-right: none;
+}
+
+.coluna-titulo {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #4CAF50;
+    text-align: center;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #4CAF50;
+    margin-bottom: 10px;
+    grid-column: 1 / -1; 
+}
+
+.card-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    font-size: 0.9em;
+}
+
+.card-titulo {
+    font-weight: 500;
+    color: #555;
+    margin-right: 5px;
+}
+
+.card-valor {
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Estilo para a coluna do Ticker (primeira coluna) */
+.col-1 {
+    display: flex;
+    justify-content: center;     /* Centraliza horizontalmente */
+    align-items: center;         /* Centraliza verticalmente */
+    text-align: center;
+    flex-direction: column;
+}
+
+.col-1 .card-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.col-1 .card-valor {
+    font-size: 1.2em;             /* Fonte menor para evitar quebra */
+    font-weight: 900;
+    color: #007bff;
+    white-space: nowrap;         /* Impede quebra de linha */
+    overflow: hidden;
+    text-overflow: ellipsis;     /* Adiciona "..." se o texto for muito longo */
+    max-width: 100%;
+    text-align: center;
+}
+
+
+
+
+
+/* Destaque para Alocação (R$) */
+.col-2 .card-item:first-child .card-valor {
+    font-size: 1.05em;
+    font-weight: bolder;
+    color: #28a745;
+}
+
+.valor-monetario {
+    color: #2c9049;
+}
+
+.col-4 .card-item:last-child {
+    margin-top: 10px;
+    border-top: 1px dashed #ccc;
+    padding-top: 5px;
+}
+
+.col-4 .card-item:last-child .card-valor {
+    font-style: italic;
+    color: #dc3545; 
+    font-weight: normal;
+    white-space: normal;
+    text-align: left;
+}
+
+/* --- Cabeçalho Mesclado do Card (Ativo) --- */
+.card-header-ativo {
+    grid-column: 1 / -1;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-header-ativo h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+/* --- RESPONSIVIDADE PARA TELAS MENORES --- */
+@media (max-width: 768px) {
+    .ativo-card {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .card-coluna {
+        border-right: none;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .card-coluna.col-4 {
+        border-bottom: none;
+    }
+
+    .coluna-titulo {
+        font-size: 1.1em;
+        text-align: left;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid #4CAF50;
+    }
+
+    .card-item {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 1em;
+        padding: 5px 0;
+    }
+
+    .card-titulo {
+        margin-bottom: 3px;
+    }
+
+    .card-valor {
+        text-align: left;
+        white-space: normal;
+    }
+
+    .col-1 .card-valor {
+        font-size: 1.2em;
+        text-align: left;
+        padding-top: 0;
+    }
+
+    .card-header-ativo {
+        padding: 10px;
+        font-size: 1.2rem;
+        text-align: left;
+    }
+
+    .card-header-ativo h3 {
+        font-size: 1.2rem;
+    }
 }
