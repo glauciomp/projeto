@@ -1,25 +1,27 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    text-align: center;
-    padding-top: 50px;
-}
-
-header h1 {
-    color: #007bff;
-}
-
-main {
+/* Estilo para a tabela de investimentos */
+#tabela-container table {
+    width: 100%;
+    border-collapse: collapse; /* Para unir as bordas das células */
     margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-button {
+#tabela-container th, #tabela-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#tabela-container th {
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-weight: bold;
+}
+
+#tabela-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#tabela-container tr:hover {
+    background-color: #f1f1f1;
 }
