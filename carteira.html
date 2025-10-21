@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carteira de Investimentos - 10 Anos</title>
-    <link rel="stylesheet" href="/projeto/style.css">
-<script src="/projeto/carteira-script.js"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carteira de Investimentos - 10 Anos</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./carteira-script.js"></script>
 </head>
 <body>
+  <header>
+    <h1>Carteira de Investimentos - Tipo: 10 Anos</h1>
+    <p><a href="./index.html">← Voltar para a Página Inicial</a></p>
+  </header>
 
-    <header>
-        <h1>Carteira de Investimentos - Tipo: 10 Anos</h1>
-        <p><a href="index.html">← Voltar para a Página Inicial</a></p>
-    </header>
+  <main>
+    <h2>Carregar Dados da Carteira (Formato CSV)</h2>
+    <input type="file" id="arquivoCsv" accept=".csv" />
+    <p id="status-arquivo" style="color: red; margin-top: 10px;">
+      Aguardando o upload do arquivo...
+    </p>
 
-    <main>
-        
-        <h2>Carregar Dados da Carteira (Formato CSV)</h2>
-        
-        <input type="file" id="arquivoCsv" accept=".csv">
-        <p id="status-arquivo" style="color: red; margin-top: 10px;">Aguardando o upload do arquivo...</p>
+    <hr style="margin-top: 30px;" />
 
-        <hr style="margin-top: 30px;">
-        
-        <h2>Dados Carregados</h2>
-        <div id="tabela-container">
-            <p>Selecione um arquivo CSV de investimentos acima para exibir a tabela.</p>
-        </div>
-    </main>
+    <h2>Dados Carregados</h2>
+    <div id="tabela-container">
+      <p>
+        Selecione um arquivo CSV de investimentos acima para exibir a tabela.
+      </p>
+    </div>
+  </main>
 
-    <footer>
-        <p>Desenvolvido com ❤️ para o GitHub.</p>
-    </footer>
-
+  <footer>
+    <p>Desenvolvido com ❤️ para o GitHub.</p>
+  </footer>
 </body>
 </html>
