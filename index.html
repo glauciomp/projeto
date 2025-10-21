@@ -3,25 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bem-vindo ao Meu Site!</title>
+  <title>Bem-vindo aos Meus Investimentos!</title>
   <link rel="stylesheet" href="./style.css" />
-  <script src="./script.js"></script>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header, footer {
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    /* Menu horizontal */
+    nav {
+      background-color: #333;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav > ul > li > a {
+      color: white;
+      padding: 15px 20px;
+      display: block;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      background-color: #444;
+    }
+
+    /* Submenus */
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #f9f9f9;
+      min-width: 200px;
+      z-index: 100;
+      border: 1px solid #ccc;
+    }
+
+    nav ul li:hover > ul {
+      display: block;
+    }
+
+    nav ul li ul li a {
+      color: #333;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    nav ul li ul li a:hover {
+      background-color: #eee;
+    }
+
+    /* Sub-submenus */
+    nav ul li ul li ul {
+      left: 100%;
+      top: 0;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Bem-vindo ao Meu Site!</h1>
+    <h1>Bem-vindo aos Meus Investimentos!</h1>
   </header>
 
-  <main>
-    <p>
-      Este é um site de exemplo para você praticar e hospedar no GitHub Pages.
-      Sinta-se à vontade para editar o conteúdo.
-    </p>
-    <button id="meuBotao">Clique em mim</button>
+  <nav>
+    <ul>
+      <li><a href="#">Investimentos</a>
+        <ul>
+          <li><a href="#">Bolsa de Valores</a>
+            <ul>
+              <li><a href="#">Carteira de Investimentos</a>
+                <ul>
+                  <li><a href="./10anos.html">10 Anos</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
-    <h2>
-      <a href="./carteira.html">Carteira de Investimentos - Tipo: 10 Anos</a>
-    </h2>
+  <main>
+    <p>Selecione o menu acima para navegar pelos seus investimentos.</p>
   </main>
 
   <footer>

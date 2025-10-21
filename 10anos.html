@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carteira de Investimentos - 10 Anos</title>
+  <title>Carteira - 10 Anos</title>
   <link rel="stylesheet" href="./style.css" />
-  <script src="./carteira-script.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
   <header>
-    <h1>Carteira de Investimentos - Tipo: 10 Anos</h1>
-    <p><a href="./index.html">← Voltar para a Página Inicial</a></p>
+    <h1>Carteira de Investimentos - 10 Anos</h1>
+    <p><a href="./index.html">← Voltar para o Menu Principal</a></p>
   </header>
 
   <main>
-    <h2>Carregar Dados da Carteira (Formato CSV)</h2>
-    <input type="file" id="arquivoCsv" accept=".csv" />
+    <h2>Carregar Dados da Carteira (Formato Excel .xlsx)</h2>
+    <input type="file" id="arquivoCsv" accept=".xlsx" />
     <p id="status-arquivo" style="color: red; margin-top: 10px;">
       Aguardando o upload do arquivo...
     </p>
@@ -25,7 +25,7 @@
     <h2>Dados Carregados</h2>
     <div id="tabela-container">
       <p>
-        Selecione um arquivo CSV de investimentos acima para exibir a tabela.
+        Selecione um arquivo Excel (.xlsx) de investimentos acima para exibir os cards.
       </p>
     </div>
   </main>
@@ -33,5 +33,7 @@
   <footer>
     <p>Desenvolvido com ❤️ para o GitHub.</p>
   </footer>
+
+  <script src="./carteira-script.js"></script>
 </body>
 </html>
