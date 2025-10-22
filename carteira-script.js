@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     statusArquivo.textContent = 'AVISO: Nenhum arquivo de dados carregado. Por favor, selecione seu arquivo Excel (.xlsx).';
   }
 
+  // Leitura da planilha
   inputArquivo.addEventListener('change', (event) => {
     const arquivo = event.target.files[0];
     if (!arquivo || !arquivo.name.endsWith('.xlsx')) {
@@ -42,6 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const workbook = XLSX.read(data, { type: 'array' });
       const aba = workbook.SheetNames[0];
       const dados = XLSX.utils.sheet_to_json(workbook.Sheets[aba], { defval: '' });
+
+      // Verificação de campos obrigatórios
+      const camposEsperados = ['Ativo', 'Ticker', 'Tipo', 'Alocação (R$)', 'Yield Anual (%)', 'Dividendos 04/09/2025'];
+      const camposPresentes = Object.keys(dados[0] || {});
+      const camposFaltando = camposEsperados.filter(campo => !camposPresentes.includes(campo));
+
+      if (camposFaltando.length > 0) {
+        statusArquivo.textContent = `A planilha está incompleta. Faltam os campos: ${camposFaltando.join(', ')}`;
+        statusArquivo.style.color = 'red';
+        return;
+      }
+
       dadosAtivos = dados;
       localStorage.setItem('dadosCarteira', JSON.stringify(dados));
       tituloDados.textContent = 'Visão Geral Carteira de Investimentos - Tipo: 10 anos';
@@ -49,13 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
       statusArquivo.textContent = `Arquivo "${arquivo.name}" carregado com sucesso.`;
       statusArquivo.style.color = 'green';
     };
+
     leitor.onerror = function () {
       statusArquivo.textContent = 'ERRO: Falha ao ler o arquivo.';
       statusArquivo.style.color = 'red';
     };
+
     leitor.readAsArrayBuffer(arquivo);
   });
 
+  // Aplicar filtros
   btnAplicarFiltros.addEventListener('click', () => {
     const tipo = filtroTipo.value;
     const yieldMin = parseFloat(filtroYield.value) || 0;
@@ -83,11 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
     tabelaContainer.innerHTML = gerarCards(filtrados);
   });
 
+  // Limpar filtros
   btnLimparFiltros.addEventListener('click', () => {
     filtroTipo.value = '';
     filtroYield.value = '';
     filtroDividendos.value = '';
-    tabelaContainer.innerHTML = gerarCards(dadosAtivos);
+
+    if (dadosAtivos.length > 0) {
+      tabelaContainer.innerHTML = gerarCards(dadosAtivos);
+    } else {
+      tabelaContainer.innerHTML = `
+        <p>
+          Dados removidos. Carregue uma nova planilha.
+        </p>
+      `;
+      tituloDados.textContent = 'Aguardando os investimentos';
+    }
   });
 });
 function formatarValor(valor, tipo) {
@@ -213,12 +240,19 @@ function gerarCards(dados) {
 function limparPlanilha() {
   localStorage.removeItem('dadosCarteira');
   dadosAtivos = [];
-  document.getElementById('tabela-container').innerHTML = '<p>Dados removidos. Carregue uma nova planilha.</p>';
-  if (graficoPizza) {
-    graficoPizza.destroy();
-    graficoPizza = null;
-  }
-  document.getElementById('status-arquivo').textContent = 'Planilha removida. Selecione um novo arquivo.';
-  document.getElementById('status-arquivo').style.color = 'orange';
+
+  document.getElementById('tabela-container').innerHTML = `
+    <p>
+      Dados removidos. Carregue uma nova planilha.
+    </p>
+  `;
   document.getElementById('titulo-dados').textContent = 'Aguardando os investimentos';
+  document.getElementById('status-arquivo').textContent = 'Planilha removida. Selecione um novo arquivo.';
+  document.getElementById('status-arquivo').style.color = 'red';
+  document.getElementById('arquivoCsv').value = '';
+  document.getElementById('filtro-tipo').value = '';
+  document.getElementById('filtro-yield').value = '';
+  document.getElementById('filtro-dividendos').value = '';
 }
+
+

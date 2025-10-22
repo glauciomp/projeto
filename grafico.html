@@ -37,6 +37,8 @@
       const labels = [];
       const valores = [];
 
+      
+
       dados.forEach(linha => {
         const nome = linha['Ativo'] || linha['Ticker'] || 'Desconhecido';
         const valor = parseFloat((linha['Alocação (R$)'] || '0').toString().replace(',', '.'));
