@@ -6,11 +6,18 @@
   <title>Carteira - 10 Anos</title>
   <link rel="stylesheet" href="./style.css" />
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="./carteira-script.js" defer></script>
 </head>
 <body>
   <header>
     <h1>Carteira de Investimentos - 10 Anos</h1>
-    <p><a href="./index.html">← Voltar para o Menu Principal</a></p>
+    <p>
+      <button onclick="window.location.href='./index.html'" class="btn-voltar">
+    Voltar para o Menu Principal
+      </button>
+    </p>
+
+
   </header>
 
   <main>
@@ -20,9 +27,53 @@
       Aguardando o upload do arquivo...
     </p>
 
-    <hr style="margin-top: 30px;" />
+    <section style="margin-top: 30px;">
+      <h2>Filtros Interativos</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 20px;">
+        <div>
+          <label for="filtro-tipo">Tipo de ativo:</label><br />
+          <select id="filtro-tipo">
+            <option value="">Todos</option>
+            <option value="acao">Ação</option>
+            <option value="fii">FII</option>
+            <option value="rendafixa">Renda Fixa</option>
+            <option value="etf">ETF</option>
+            <option value="criptoativo">Criptoativo</option>
+          </select>
+        </div>
+        <div>
+          <label for="filtro-yield">Yield mínimo (%):</label><br />
+          <input type="number" id="filtro-yield" step="0.01" placeholder="Ex: 5.00" />
+        </div>
+        <div>
+          <label for="filtro-dividendos">Dividendos mínimos (R$):</label><br />
+          <input type="number" id="filtro-dividendos" step="0.01" placeholder="Ex: 100.00" />
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-end;">
+  <button id="btn-aplicar-filtros" class="btn-filtro">
+    ✅ Aplicar Filtros
+  </button>
+  <button id="btn-limpar-filtros" class="btn-filtro">
+    🧹 Limpar Filtros
+  </button>
+</div>
 
-    <h2>Dados Carregados</h2>
+        <div class="botao-container">
+          <button ...>📊 Ver Gráfico</button>
+          <button onclick="limparPlanilha()" class="btn-limpar">
+          🧹 Limpar Planilha Carregada
+          </button>
+</div>
+
+
+
+
+      </div>
+    </section>
+
+    <hr />
+
+    <h2 id="titulo-dados">Aguardando os investimentos</h2>
     <div id="tabela-container">
       <p>
         Selecione um arquivo Excel (.xlsx) de investimentos acima para exibir os cards.
@@ -33,7 +84,5 @@
   <footer>
     <p>Desenvolvido com ❤️ para o GitHub.</p>
   </footer>
-
-  <script src="./carteira-script.js"></script>
 </body>
 </html>

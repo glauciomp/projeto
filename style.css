@@ -1,237 +1,309 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    padding-top: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  padding-top: 50px;
 }
 
 header, main {
-    max-width: 1400px; 
-    margin: 0 auto; 
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    margin-bottom: 20px; 
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
 }
 
 header, main, footer {
-    text-align: center; 
+  text-align: center;
 }
 
 button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 main a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 main a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* --- ESTILOS PARA OS CARDS (Layout 5 Colunas) --- */
+/* --- Cards --- */
 
 #cards-container {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: center; 
-    margin-top: 30px;
-    padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 0 10px;
 }
 
 .ativo-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    display: grid;
-    grid-template-columns: 10% 25% 25% 10% 30%; 
-    width: 100%;
-    max-width: 800px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: left; 
-    align-items: start;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 10% 30% 30% 30%;
+  width: 100%;
+  max-width: 850px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  align-items: start;
+  transition: transform 0.2s ease;
+}
+
+.ativo-card:hover {
+  transform: scale(1.01);
 }
 
 .card-coluna {
-    padding: 0 5px;
-    border-right: 1px solid #eee;
-    height: 100%;
+  padding: 0 10px;
+  border-right: 1px solid #eee;
 }
 
 .card-coluna.col-4 {
-    border-right: none;
-}
-
-.coluna-titulo {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: #4CAF50;
-    text-align: center;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #4CAF50;
-    margin-bottom: 10px;
-    grid-column: 1 / -1; 
+  border-right: none;
 }
 
 .card-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 3px 0;
-    font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px 0;
+  font-size: 0.95em;
 }
 
 .card-titulo {
-    font-weight: 500;
-    color: #555;
-    margin-right: 5px;
+  font-weight: 600;
+  color: #555;
+  white-space: nowrap;
 }
 
 .card-valor {
-    font-weight: bold;
-    color: #333;
-    text-align: right;
-    white-space: nowrap;
+  font-weight: bold;
+  color: #222;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Estilo para a coluna do Ticker (primeira coluna) */
+/* --- Ticker ajustado --- */
 .col-1 {
-    display: flex;
-    justify-content: center;     /* Centraliza horizontalmente */
-    align-items: center;         /* Centraliza verticalmente */
-    text-align: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
 
 .col-1 .card-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 0;
 }
 
 .col-1 .card-valor {
-    font-size: 1.2em;             /* Fonte menor para evitar quebra */
-    font-weight: 900;
-    color: #007bff;
-    white-space: nowrap;         /* Impede quebra de linha */
-    overflow: hidden;
-    text-overflow: ellipsis;     /* Adiciona "..." se o texto for muito longo */
-    max-width: 100%;
-    text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 4px;
+  white-space: nowrap;
+  text-align: center;
 }
 
-/* Destaque para Alocação (R$) */
-.col-2 .card-item:first-child .card-valor {
-    font-size: 1.05em;
-    font-weight: bolder;
-    color: #28a745;
+/* --- Destaques por tipo de dado --- */
+
+.col-2 .card-item:nth-child(2) .card-valor {
+  color: #28a745;
 }
 
-.valor-monetario {
-    color: #2c9049;
+.col-3 .card-item:nth-child(1) .card-valor {
+  color: #007bff;
+}
+
+.col-4 .card-item:nth-child(2) .card-valor {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.col-4 .card-item:nth-child(2).negativo .card-valor {
+  color: #dc3545;
 }
 
 .col-4 .card-item:last-child {
-    margin-top: 10px;
-    border-top: 1px dashed #ccc;
-    padding-top: 5px;
+  margin-top: 10px;
+  border-top: 1px dashed #ccc;
+  padding-top: 5px;
 }
 
 .col-4 .card-item:last-child .card-valor {
-    font-style: italic;
-    color: #dc3545; 
-    font-weight: normal;
-    white-space: normal;
-    text-align: left;
+  font-style: italic;
+  color: #6c757d;
+  font-weight: normal;
+  white-space: normal;
+  text-align: left;
 }
 
-/* --- Cabeçalho Mesclado do Card (Ativo) --- */
+/* --- Cabeçalho do card --- */
+
 .card-header-ativo {
-    grid-column: 1 / -1;
-    background-color: #f9f9f9;
-    padding: 10px 15px;
-    border-bottom: 2px solid #e0e0e0;
-    margin-bottom: 10px;
-    border-radius: 8px 8px 0 0;
+  grid-column: 1 / -1;
+  background-color: #f8f9fa;
+  padding: 12px 20px;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .card-header-ativo h3 {
-    margin: 0;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #1f2937;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1f2937;
 }
 
-/* --- RESPONSIVIDADE PARA TELAS MENORES --- */
+/* --- Estilos por tipo de ativo --- */
+
+.tipo-acao {
+  background-color: #e6f0ff;
+  border-left: 6px solid #007bff;
+}
+
+.tipo-fii {
+  background-color: #e8fbe8;
+  border-left: 6px solid #28a745;
+}
+
+.tipo-renda-fixa {
+  background-color: #fffbe6;
+  border-left: 6px solid #ffc107;
+}
+
+.tipo-etf {
+  background-color: #f3e8ff;
+  border-left: 6px solid #6f42c1;
+}
+
+.tipo-criptoativo {
+  background-color: #f0f0f0;
+  border-left: 6px solid #6c757d;
+}
+
+/* --- Responsividade --- */
+
 @media (max-width: 768px) {
-    .ativo-card {
-        display: grid;
-        grid-template-columns: 1fr;
-        padding: 15px;
-    }
+  .ativo-card {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
 
-    .card-coluna {
-        border-right: none;
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-    }
+  .card-coluna {
+    border-right: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
 
-    .card-coluna.col-4 {
-        border-bottom: none;
-    }
+  .card-coluna.col-4 {
+    border-bottom: none;
+  }
 
-    .coluna-titulo {
-        font-size: 1.1em;
-        text-align: left;
-        padding-bottom: 5px;
-        margin-bottom: 5px;
-        border-bottom: 2px solid #4CAF50;
-    }
+  .card-item {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1em;
+    padding: 5px 0;
+  }
 
-    .card-item {
-        flex-direction: column;
-        align-items: flex-start;
-        font-size: 1em;
-        padding: 5px 0;
-    }
+  .card-titulo {
+    margin-bottom: 3px;
+  }
 
-    .card-titulo {
-        margin-bottom: 3px;
-    }
+  .card-valor {
+    text-align: left;
+    white-space: normal;
+  }
 
-    .card-valor {
-        text-align: left;
-        white-space: normal;
-    }
+  .col-1 .card-valor {
+    font-size: 1.2em;
+    text-align: center;
+    padding-top: 0;
+  }
 
-    .col-1 .card-valor {
-        font-size: 1.2em;
-        text-align: left;
-        padding-top: 0;
-    }
+  .card-header-ativo {
+    padding: 10px;
+    font-size: 1.2rem;
+    text-align: left;
+  }
 
-    .card-header-ativo {
-        padding: 10px;
-        font-size: 1.2rem;
-        text-align: left;
-    }
+  .card-header-ativo h3 {
+    font-size: 1.2rem;
+  }
+}
 
-    .card-header-ativo h3 {
-        font-size: 1.2rem;
-    }
+.btn-voltar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-voltar:hover {
+  background-color: #0056b3;
+}
+
+.botao-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-limpar {
+  background-color: #dc3545; /* vermelho */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-limpar:hover {
+  background-color: #c82333; /* vermelho mais escuro no hover */
+}
+
+.btn-filtro {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-filtro:hover {
+  background-color: #0056b3;
 }
