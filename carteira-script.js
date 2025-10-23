@@ -1,6 +1,8 @@
 let dadosAtivos = [];
 let graficoPizza = null;
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const inputArquivo = document.getElementById('arquivoCsv');
   const tabelaContainer = document.getElementById('tabela-container');
@@ -153,7 +155,15 @@ function gerarCards(dados) {
     };
     const icone = icones[tipoKey] || '';
 
-    html += `<div class="ativo-card tipo-${tipoClasse}">`;
+    const custodiadoRaw = linha['Custodiado'];
+const custodiadoLimpo = typeof custodiadoRaw === 'string' ? custodiadoRaw.replace(/R\$/g, '').replace(/\s/g, '').replace(',', '.') : custodiadoRaw;
+const custodiado = parseFloat(custodiadoLimpo);
+const isVazioOuZero = !custodiadoRaw || isNaN(custodiado) || custodiado === 0;
+
+const classeAlerta = isVazioOuZero ? 'card-alerta' : '';
+
+html += `<div class="ativo-card tipo-${tipoClasse} ${classeAlerta}">`;
+
 
     html += `
       <div class="card-header-ativo" style="grid-column: 1 / -1;">
@@ -203,33 +213,56 @@ function gerarCards(dados) {
     </div>`;
 
     html += `<div class="card-coluna col-4">
-      <div class="card-item">
-        <span class="card-titulo">Custodiado:</span>
-        <span class="card-valor">${formatarValor(linha['Custodiado'], 'Custodiado')}</span>
-      </div>
-      <div class="card-item">
-        ${(() => {
-          const alocar = parseFloat((linha['Alocação (R$)'] || '0').toString().replace(',', '.'));
-          const custodiado = parseFloat((linha['Custodiado'] || '0').toString().replace(',', '.'));
-          const diferenca = custodiado - alocar;
-          const emoji = diferenca >= 0 ? '✅' : '❗';
-          const cor = diferenca >= 0 ? 'green' : 'red';
-          const titulo = diferenca >= 0 ? 'Meta ultrapassada em:' : 'Faltante:';
-          const valorFormatado = `R$ ${Math.abs(diferenca).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  <div class="card-item">
+    <span class="card-titulo">Custodiado:</span>
+    <span class="card-valor">${formatarValor(linha['Custodiado'], 'Custodiado')}</span>
+  </div>
+  <div class="card-item">
+    ${(() => {
+      const alocar = parseFloat((linha['Alocação (R$)'] || '0').toString().replace(',', '.'));
+      const custodiadoRaw = linha['Custodiado'];
+      const custodiadoLimpo = typeof custodiadoRaw === 'string' ? custodiadoRaw.replace(/R\$/g, '').replace(/\s/g, '').replace(',', '.') : custodiadoRaw;
+      const custodiado = parseFloat(custodiadoLimpo);
 
-          return `
-            <span class="card-titulo">${titulo}</span>
-            <span class="card-valor" style="color: ${cor}; font-weight: bold;">
-              ${valorFormatado} ${emoji}
-            </span>
-          `;
-        })()}
-      </div>
-      <div class="card-item">
-        <span class="card-titulo">Observação:</span>
-        <span class="card-valor">${linha['Observação'] || ''}</span>
-      </div>
-    </div>`;
+      const isVazioOuZero = !custodiadoRaw || isNaN(custodiado) || custodiado === 0;
+
+      if (isVazioOuZero) {
+        const tipoMensagem =
+          tipoKey === 'acao' ? 'Adquirir ação' :
+          tipoKey === 'fii' ? 'Adquirir FII' :
+          tipoKey === 'rendafixa' ? 'Adquirir Renda Fixa' :
+          tipoKey === 'etf' ? 'Adquirir ETF' :
+          tipoKey === 'criptoativo' ? 'Adquirir Cripto' :
+          'Adquirir ativo';
+
+        return `
+          <span class="card-titulo">Faltante:</span>
+          <span class="card-valor" style="color: red; font-weight: bold;">
+            ${tipoMensagem} ❗
+          </span>
+        `;
+      }
+
+      const diferenca = custodiado - alocar;
+      const emoji = diferenca >= 0 ? '✅' : '❗';
+      const cor = diferenca >= 0 ? 'green' : 'red';
+      const titulo = diferenca >= 0 ? 'Meta ultrapassada em:' : 'Faltante:';
+      const valorFormatado = `R$ ${Math.abs(diferenca).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      return `
+        <span class="card-titulo">${titulo}</span>
+        <span class="card-valor" style="color: ${cor}; font-weight: bold;">
+          ${valorFormatado} ${emoji}
+        </span>
+      `;
+    })()}
+  </div>
+  <div class="card-item">
+    <span class="card-titulo">Observação:</span>
+    <span class="card-valor">${linha['Observação'] || ''}</span>
+  </div>
+</div>`;
+
 
     html += `</div>`;
   });
@@ -254,5 +287,4 @@ function limparPlanilha() {
   document.getElementById('filtro-yield').value = '';
   document.getElementById('filtro-dividendos').value = '';
 }
-
 

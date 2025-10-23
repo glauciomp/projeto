@@ -6,7 +6,6 @@
   <title>Bem-vindo aos Meus Investimentos!</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
-    /* Reset básico */
     * {
       margin: 0;
       padding: 0;
@@ -14,28 +13,43 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      color: #333;
     }
 
     header, footer {
       background-color: #f0f0f0;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
-    main {
-      padding: 20px;
+    header h1 {
+      font-size: 2rem;
+      color: #222;
     }
 
-    /* Menu horizontal */
+    footer p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
     nav {
-      background-color: #333;
+      background-color: #222;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
     }
 
     nav ul li {
@@ -43,47 +57,83 @@
     }
 
     nav > ul > li > a {
-      color: white;
-      padding: 15px 20px;
+      color: #fff;
+      padding: 15px 25px;
       display: block;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
     }
 
-    nav ul li a:hover {
+    nav > ul > li > a:hover {
       background-color: #444;
     }
 
-    /* Submenus */
-    nav ul li ul {
-      display: none;
+    /* Submenu múltiplo */
+    .submenu-multiplo {
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #f9f9f9;
-      min-width: 200px;
+      background-color: #fff;
+      padding: 10px;
+      gap: 20px;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 100;
-      border: 1px solid #ccc;
+      display: none;
     }
 
-    nav ul li:hover > ul {
+    nav ul li:hover .submenu-multiplo {
+      display: flex;
+    }
+
+    .submenu-coluna {
+      min-width: 200px;
+    }
+
+    .submenu-coluna h4 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: #222;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+
+    .submenu-coluna ul {
+      list-style: none;
+    }
+
+    .submenu-coluna ul li {
+      position: relative;
+    }
+
+    .submenu-coluna ul li a {
       display: block;
-    }
-
-    nav ul li ul li a {
+      padding: 8px 12px;
       color: #333;
-      padding: 10px 15px;
       text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .submenu-coluna ul li a:hover {
+      background-color: #f2f2f2;
+    }
+
+    /* Sub-submenu padrão (cresce para baixo) */
+    .submenu-coluna ul li ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+      min-width: 180px;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 100;
+    }
+
+    .submenu-coluna ul li:hover ul {
       display: block;
-    }
-
-    nav ul li ul li a:hover {
-      background-color: #eee;
-    }
-
-    /* Sub-submenus */
-    nav ul li ul li ul {
-      left: 100%;
-      top: 0;
     }
   </style>
 </head>
@@ -94,18 +144,27 @@
 
   <nav>
     <ul>
-      <li><a href="#">Investimentos</a>
-        <ul>
-          <li><a href="#">Bolsa de Valores</a>
+      <li><a href="#">📁 Investimentos</a>
+        <div class="submenu-multiplo">
+          <div class="submenu-coluna">
+            <h4>📊 Bolsa de Valores</h4>
             <ul>
-              <li><a href="#">Carteira de Investimentos</a>
+              <li><a href="#">💼 Carteira de Investimentos</a>
                 <ul>
-                  <li><a href="./10anos.html">10 Anos</a></li>
+                  <li><a href="./10anos.html">📅 10 Anos</a></li>
                 </ul>
               </li>
             </ul>
-          </li>
-        </ul>
+          </div>
+          <div class="submenu-coluna">
+            <h4>🎰 BetFury</h4>
+            <ul>
+              <li><a href="#">🔐 Login</a></li>
+              <li><a href="#">📈 Estatísticas</a></li>
+              <li><a href="#">💰 Carteira</a></li>
+            </ul>
+          </div>
+        </div>
       </li>
     </ul>
   </nav>
