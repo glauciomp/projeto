@@ -1,7 +1,7 @@
+/* carteira-script.js --> */
+
 let dadosAtivos = [];
 let graficoPizza = null;
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const inputArquivo = document.getElementById('arquivoCsv');
@@ -288,3 +288,50 @@ function limparPlanilha() {
   document.getElementById('filtro-dividendos').value = '';
 }
 
+/* Estilo do resumo */
+async function carregarCotacoesResumo() {
+  const tickers = ['USD/BRL', 'PETR4', 'VALE3', 'ITSA4', 'BBAS3', 'ITUB4', 'USIM5', 'JBSS3', 'CMIG4'];
+  const tabela = document.getElementById('corpo-cotacoes');
+  if (!tabela) return; // segurança
+
+  tabela.innerHTML = '';
+
+  for (const ticker of tickers) {
+    try {
+      const res = await fetch(`https://brapi.dev/api/quote/${ticker}`);
+      const dados = await res.json();
+      const ativo = dados.results[0];
+      const preco = ativo.regularMarketPrice.toFixed(2);
+      const variacao = ativo.regularMarketChangePercent.toFixed(2);
+      const cor = variacao >= 0 ? 'green' : 'red';
+      const emoji = variacao >= 0 ? '📈' : '📉';
+
+      tabela.innerHTML += `
+        <tr>
+          <td>${ticker}</td>
+          <td>R$ ${preco}</td>
+          <td style="color:${cor};">${variacao}% ${emoji}</td>
+        </tr>
+      `;
+    } catch (erro) {
+      tabela.innerHTML += `
+        <tr>
+          <td>${ticker}</td>
+          <td colspan="2">❌ Erro ao carregar</td>
+        </tr>
+      `;
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('resumo.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('resumo-mercado').innerHTML = html;
+      carregarCotacoesResumo(); // só chama depois que o HTML foi inserido
+    })
+    .catch(error => {
+      console.error('Erro ao carregar resumo.html:', error);
+    });
+});

@@ -1,3 +1,4 @@
+/* style.css --> */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f6f8;
@@ -325,4 +326,50 @@ main a:hover {
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: bold;
+}
+
+/* Estilo do resumo */
+/* ===== Painel de Resumo ===== */
+.painel-resumo {
+  background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.painel-resumo .titulo-resumo {
+  font-size: 1.6em;
+  color: #2d3748;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ===== Tabela de Cotações (apenas dentro do resumo) ===== */
+.painel-resumo .tabela-cotacoes {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.painel-resumo .tabela-cotacoes th {
+  background-color: #2b6cb0;
+  color: #fff;
+  padding: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.painel-resumo .tabela-cotacoes td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.painel-resumo .tabela-cotacoes tr:hover {
+  background-color: #edf2f7;
+  transition: background 0.3s ease;
 }

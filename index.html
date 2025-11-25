@@ -1,11 +1,15 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bem-vindo aos Meus Investimentos!</title>
-  <link rel="stylesheet" href="./style.css" />
+  <!-- Tailwind CDN (Adicionado para um styling mais moderno) -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Estilos base (Mantidos) */
     * {
       margin: 0;
       padding: 0;
@@ -13,25 +17,30 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #fafafa;
       color: #333;
     }
 
     header, footer {
       background-color: #f0f0f0;
-      padding: 30px 20px;
-      text-align: center;
+      padding: 20px 20px;
+    }
+
+    header {
+      text-align: left; /* REQUISITO: Alinhamento à esquerda */
     }
 
     header h1 {
       font-size: 2rem;
-      color: #222;
+      color: #1f2937;
+      font-weight: 700;
     }
 
     footer p {
       font-size: 0.9rem;
       color: #666;
+      text-align: center;
     }
 
     main {
@@ -41,14 +50,15 @@
     }
 
     nav {
-      background-color: #222;
+      background-color: #1f2937;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
     }
 
@@ -58,7 +68,7 @@
 
     nav > ul > li > a {
       color: #fff;
-      padding: 15px 25px;
+      padding: 15px 20px;
       display: block;
       text-decoration: none;
       font-weight: bold;
@@ -66,115 +76,196 @@
     }
 
     nav > ul > li > a:hover {
-      background-color: #444;
+      background-color: #374151;
     }
 
-    /* Submenu múltiplo */
-    .submenu-multiplo {
+    /* ------------------------------------------------ */
+    /* REVISÃO DA LÓGICA DE HOVER (Esconder/Mostrar) */
+    /* ------------------------------------------------ */
+
+    /* Regra para esconder todos os submenus */
+    .submenu-multiplo,
+    .submenu {
+      /* ESCONDE INICIALMENTE */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      
+      /* Posicionamento base */
       position: absolute;
-      top: 100%;
-      left: 0;
       background-color: #fff;
       padding: 10px;
-      gap: 20px;
       border-radius: 4px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       z-index: 100;
-      display: none;
+      min-width: 220px; /* Garante que o menu não encolha */
     }
 
-    nav ul li:hover .submenu-multiplo {
-      display: flex;
+    /* Posição do submenu principal (abaixo do item pai) */
+    .submenu-multiplo {
+      top: 100%;
+      left: 0;
+      display: flex; /* Mantido como flex para suportar futuras colunas */
+      flex-direction: column; 
+    }
+    
+    /* Posição dos submenus aninhados (à direita do item pai) */
+    .submenu {
+      top: 0;
+      left: 100%;
+      padding: 10px 0; /* Remove padding lateral */
+      min-width: 180px;
     }
 
+    /* Regra para MOSTRAR o submenu principal ao passar o mouse no <li> pai */
+    nav ul li:hover > .submenu-multiplo {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Regra para MOSTRAR o submenu aninhado (cresce para a direita) ao passar o mouse */
+    .has-submenu:hover > .submenu {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Estrutura interna */
     .submenu-coluna {
-      min-width: 200px;
+      min-width: 220px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .submenu-multiplo > .submenu-coluna:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
     .submenu-coluna h4 {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-size: 1rem;
-      color: #222;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 4px;
+      color: #1f2937;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-left: 3px solid #6366f1;
     }
 
     .submenu-coluna ul {
-      list-style: none;
+      padding: 0;
+      display: block;
     }
 
     .submenu-coluna ul li {
       position: relative;
+      padding: 0;
     }
 
     .submenu-coluna ul li a {
       display: block;
-      padding: 8px 12px;
+      padding: 8px 15px;
       color: #333;
       text-decoration: none;
       transition: background 0.3s;
     }
 
     .submenu-coluna ul li a:hover {
-      background-color: #f2f2f2;
+      background-color: #f3f4f6;
     }
-
-    /* Sub-submenu padrão (cresce para baixo) */
-    .submenu-coluna ul li ul {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #fff;
-      min-width: 180px;
-      border-radius: 4px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: none;
-      z-index: 100;
-    }
-
-    .submenu-coluna ul li:hover ul {
-      display: block;
-    }
+    
   </style>
 </head>
 <body>
-  <header>
-    <h1>Bem-vindo aos Meus Investimentos!</h1>
+  <header class="shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1>Bem-vindo aos Meus Investimentos!</h1>
+    </div>
   </header>
 
   <nav>
-    <ul>
-      <li><a href="#">📁 Investimentos</a>
-        <div class="submenu-multiplo">
-          <div class="submenu-coluna">
-            <h4>📊 Bolsa de Valores</h4>
-            <ul>
-              <li><a href="#">💼 Carteira de Investimentos</a>
-                <ul>
-                  <li><a href="./10anos.html">📅 10 Anos</a></li>
-                </ul>
-              </li>
-            </ul>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ul>
+        <li><a href="#" class="text-white">📁 Investimentos</a>
+          <!-- Estrutura principal do submenu vertical, que contém as categorias (colunas) -->
+          <div class="submenu-multiplo">
+            
+            <!-- Categoria 1: Bolsa de Valores -->
+            <div class="submenu-coluna">
+              <h4>📊 Bolsa de Valores</h4>
+              <ul>
+                <li class="has-submenu">
+                  <a href="#">💼 Meus Ativos ></a>
+                  <!-- Sub-submenu Bolsa, crescendo para a direita -->
+                  <ul class="submenu">
+                    <li><a href="#">📅 Ativos</a></li>
+                  </ul>
+                </li>
+                <li class="has-submenu">
+                  <a href="#">💼 Resumos ></a>
+                  <!-- Sub-submenu Bolsa, crescendo para a direita -->
+                  <ul class="submenu">
+                    <li><a href="./10anos.html">📅 10 Anos</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Categoria 2: Criptomoedas -->
+            <div class="submenu-coluna">
+              <h4>💎 Criptomoedas</h4>
+              <ul>
+                <li class="has-submenu">
+                  <a href="#">💰 99Pay ></a>
+                  <!-- Sub-submenu Criptomoedas, crescendo para a direita -->
+                  <ul class="submenu">
+                    <li><a href="./cripto.html">💎 Carteira Digital</a></li>
+                  </ul>
+                </li>
+                
+                <li class="has-submenu">
+                  <a href="#">🎰 BetFury ></a>
+                  <!-- Sub-submenu BetFury, crescendo para a direita -->
+                  <ul class="submenu">
+                    <li><a href="#">🔐 Login</a></li>
+                    <li><a href="#">📈 Estatísticas</a></li>
+                    <li><a href="#">💰 Carteira</a></li>
+                    <li><a href="#">📅 Gerenciamento</a></li>
+                    <li><a href="./referencia.html">🌟 Link Referência</a></li>
+                  </ul>
+                </li>
+
+                <li class="has-submenu">
+                  <a href="#">💰 Binance ></a>
+                  <!-- Sub-submenu Criptomoedas, crescendo para a direita -->
+                  <ul class="submenu">
+                    <li><a href="#">💎 Carteira Digital</a></li>
+                  </ul>
+                </li>
+
+                <li class="has-submenu">
+                  <a href="#">💰 Trust Dice ></a>
+                  <!-- Sub-submenu Criptomoedas, crescendo para a direita -->
+                  <ul class="submenu">
+                    <li><a href="#">💎 Carteira Digital</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+
           </div>
-          <div class="submenu-coluna">
-            <h4>🎰 BetFury</h4>
-            <ul>
-              <li><a href="#">🔐 Login</a></li>
-              <li><a href="#">📈 Estatísticas</a></li>
-              <li><a href="#">💰 Carteira</a></li>
-            </ul>
-          </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <main>
-    <p>Selecione o menu acima para navegar pelos seus investimentos.</p>
+    <p>Selecione o menu acima para navegar pelos seus investimentos, Gláucio!</p>
   </main>
 
-  <footer>
+  <footer class="mt-8">
     <p>Desenvolvido com ❤️ para o GitHub.</p>
   </footer>
+
 </body>
 </html>
