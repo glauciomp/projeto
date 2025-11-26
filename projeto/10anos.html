@@ -1,0 +1,96 @@
+<!-- 10anos.html -->
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carteira - 10 Anos</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="./carteira-script.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  
+  <div id="resumo-mercado"></div> <br>
+
+  <header>
+    <h1>Carteira de Investimentos - 10 Anos</h1>
+    <p>
+      <button onclick="window.location.href='./index.html'" class="btn-voltar">
+    Voltar para o Menu Principal
+      </button>
+    </p>
+
+    <h2> Veja o exemplo abaixo, o formato que a planilha tem que ter</h2>
+    <img src="./exemplo.png" alt="Exemplo de formato da planilha" style="max-width: 100%; height: auto; margin-top: 10px;"/>
+
+  </header>
+
+  <main>
+    <h2>Carregar Dados da Carteira (Formato Excel .xlsx)</h2>
+    <input type="file" id="arquivoCsv" accept=".xlsx" />
+    <p id="status-arquivo" style="color: red; margin-top: 10px;">
+      Aguardando o upload do arquivo...
+    </p>
+
+    <section style="margin-top: 30px;">
+      <h2>Filtros Interativos</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 20px;">
+        <div>
+          <label for="filtro-tipo">Tipo de ativo:</label><br />
+          <select id="filtro-tipo">
+            <option value="">Todos</option>
+            <option value="acao">Ação</option>
+            <option value="fii">FII</option>
+            <option value="rendafixa">Renda Fixa</option>
+            <option value="etf">ETF</option>
+            <option value="criptoativo">Criptoativo</option>
+          </select>
+        </div>
+        <div>
+          <label for="filtro-yield">Yield mínimo (%):</label><br />
+          <input type="number" id="filtro-yield" step="0.01" placeholder="Ex: 5.00" />
+        </div>
+        <div>
+          <label for="filtro-dividendos">Dividendos mínimos (R$):</label><br />
+          <input type="number" id="filtro-dividendos" step="0.01" placeholder="Ex: 100.00" />
+        </div>
+        <div style="display: flex; gap: 10px; align-items: flex-end;">
+  <button id="btn-aplicar-filtros" class="btn-filtro">
+    ✅ Aplicar Filtros
+  </button>
+  <button id="btn-limpar-filtros" class="btn-filtro">
+    🧹 Limpar Filtros
+  </button>
+</div>
+
+        <div class="botao-container">
+          <button onclick="window.location.href='grafico.html'" class="btn-filtro">📊 Ver Gráfico</button>
+          <button onclick="limparPlanilha()" class="btn-limpar">
+          🧹 Limpar Planilha Carregada
+          </button>
+</div>
+
+      </div>
+    </section>
+
+    <hr />
+
+    <h2 id="titulo-dados">Aguardando os investimentos</h2>
+    <div id="tabela-container">
+      <p>
+        Selecione um arquivo Excel (.xlsx) de investimentos acima para exibir os cards.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Desenvolvido com ❤️ para o GitHub.</p>
+  </footer>
+</body>
+</html>

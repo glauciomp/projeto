@@ -1,0 +1,188 @@
+<!-- referencia.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-width, initial-scale=1.0" />
+    <title>Bônus de Indicação BetFury</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS para manter o tema escuro, conforme solicitado */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Fundo PRETO */
+            color: #e5e7eb; /* Cor padrão do texto para cinza claro */
+            padding-bottom: 50px; /* Espaço para o footer */
+        }
+        .container-card {
+            background-color: #1f2937; /* Fundo escuro para o card principal */
+            border: 1px solid #374151; /* Borda mais escura */
+            color: #e5e7eb; /* Texto do card em cinza claro */
+        }
+        .link-item {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 0.5rem;
+            background-color: #6366f1; /* Cor primária (Indigo) */
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .link-item:hover {
+            background-color: #4f46e5;
+        }
+        /* Estilo para garantir que o texto do código não quebre */
+        #referralCode {
+            white-space: nowrap;
+        }
+        /* Ajustes de cores para elementos específicos no tema escuro */
+        h1 {
+            color: #fcd34d; /* Amarelo para o título principal */
+        }
+        .border-yellow-500 {
+            border-color: #fcd34d; /* Borda amarela */
+        }
+        .border-b {
+            border-color: #374151; /* Borda sob o H2 */
+        }
+        
+        /* ESTILO PADRÃO: Botão Voltar (mantido do passo anterior) */
+        .btn-voltar {
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #4b5563; /* Cinza escuro (gray-600) */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: background-color 0.2s;
+            text-align: center;
+        }
+        .btn-voltar:hover {
+            background-color: #6b7280; /* Cinza um pouco mais claro (gray-700) */
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            color: #6b7280; /* Cor do texto no footer */
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER (Botão Voltar) - Conforme o padrão 10anos.html -->
+    <header class="text-center pt-6">
+        <p class="mb-4">
+            <a href="./index.html" class="btn-voltar">
+                Voltar para o Menu Principal
+            </a>
+        </p>
+    </header>
+
+    <main>
+        <div class="max-w-xl mx-auto p-6 md:p-10 container-card rounded-xl shadow-2xl">
+
+            <!-- Bloco de Imagem Centralizada -->
+            <div class="mb-6 flex justify-center">
+                <a href="https://betfury.io/?r=LUCKYGlaucio" target="_blank"><img src="https://bfstatic.io/pictures/BF/gif/114x90.gif" alt="betfury.com" /></a>
+            </div>
+
+            <h1 class="text-3xl font-bold mb-4 text-center">💸 Bônus BetFury - Indicação</h1>
+            
+            <p class="mb-6 text-center text-gray-400">
+                Inscreva-se na betfury.io usando meu link ou código de indicação e ganhe um bônus de US$ 200. Jogue jogos de cassino, aposte em esportes, ganhe criptomoedas e divirta-se com a BetFury!
+            </p>
+                                    
+            <!-- A classe "bg-gray-100" foi substituída por "bg-gray-900" -->
+            <div class="bg-gray-900 p-4 rounded-lg border-l-4 border-yellow-500 mb-6 flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-gray-600 mb-1">Código de Referência:</p>
+                    <!-- ID adicionado para o JavaScript acessar o código --><p id="referralCode" class="text-xl font-extrabold text-gray-100 tracking-wider">LUCKYGlaucio</p>
+                </div>
+                
+                <!-- Botão de Copiar --><button 
+                    id="copyButton" 
+                    onclick="copyCode()" 
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3 rounded-lg shadow transition duration-150 flex items-center space-x-2 text-sm"
+                    aria-label="Copiar código de referência"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copiar</span>
+                </button>
+            </div>
+            
+            <!-- Mensagem de feedback (escondida inicialmente) --><div id="copyMessage" class="text-green-400 text-sm font-medium text-center mb-4 hidden"></div>
+
+            <!-- Links de Referência --><h2 class="text-xl font-semibold mb-3 border-b pb-2">Links Diretos</h2>
+
+            <a href="https://betfury.io/?r=LUCKYGlaucio" target="_blank" class="link-item">
+                Link Principal: betfury.io/?r=LUCKYGlaucio
+            </a>
+
+            <a href="https://t.me/misterFury_bot/app?startapp=tgReLLUCKYGlaucio" target="_blank" class="link-item bg-blue-500 hover:bg-blue-600 mt-4">
+                Link Telegram (App): Inicie sua Sessão
+            </a>
+            
+        </div>
+    </main>
+
+    <!-- FOOTER - Conforme o padrão 10anos.html -->
+    <footer>
+        <p>Desenvolvido com ❤️ para o GitHub.</p>
+    </footer>
+
+    <script>
+        /**
+         * Função para copiar o código de referência para a área de transferência.
+         * Usa document.execCommand('copy') por ser mais compatível em ambientes de iFrame.
+         */
+        function copyCode() {
+            const codeElement = document.getElementById('referralCode');
+            // Obtém o texto do código (LUCKYGlaucio)
+            const codeToCopy = codeElement.textContent.trim(); 
+            const copyMessage = document.getElementById('copyMessage');
+            
+            // Cria um campo de texto temporário invisível
+            const tempInput = document.createElement('textarea');
+            tempInput.value = codeToCopy;
+            // Estilo para garantir que o campo não apareça na tela e não afete o layout
+            tempInput.style.position = 'absolute';
+            tempInput.style.left = '-9999px';
+            document.body.appendChild(tempInput);
+            
+            tempInput.select();
+            
+            let success = false;
+            try {
+                // Tenta executar o comando de cópia
+                success = document.execCommand('copy');
+            } catch (err) {
+                console.error('Falha ao tentar copiar o texto:', err);
+            }
+
+            document.body.removeChild(tempInput);
+
+            // Exibe mensagem de feedback
+            if (success) {
+                copyMessage.textContent = `✅ Código '${codeToCopy}' copiado!`;
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 3000); // Esconde a mensagem após 3 segundos
+            } else {
+                copyMessage.textContent = '❌ Falha ao copiar. Tente selecionar o texto manualmente.';
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    copyMessage.classList.add('hidden');
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
